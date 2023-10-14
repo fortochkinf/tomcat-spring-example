@@ -14,12 +14,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.4.RELEASE</version>
+		<version>2.7.15</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 		<finalName>spring-h2-demo</finalName>
 	</properties>
 
@@ -78,6 +78,15 @@
 
 	</dependencies>
 
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>Internal repo</name>
+			<url>file:///tmp</url>
+		</repository>
+	</distributionManagement>
+
+
 	<build>
 		<plugins>
 			<plugin>
@@ -106,26 +115,6 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.5</version>
-				<executions>
-					<execution>
-						<id>default-prepare-agent</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>default-report</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
@@ -133,8 +122,8 @@
 					<url>http://localhost:8080/manager/text</url>
 					<server>localhost</server>
 					<path>/${finalName}</path>
-					<username>admin</username>
-					<password>admin</password>
+					<username>tomcat</username>
+					<password>tomcat</password>
 					<update>true</update>
 				</configuration>
 			</plugin>
